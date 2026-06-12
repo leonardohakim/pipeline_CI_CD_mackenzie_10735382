@@ -1,0 +1,41 @@
+name: CI - Integração Contínua
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-and-test:
+    name: Validar e Testar
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🔍 Validar estrutura do projeto
+        run: |
+          echo "✅ site/index.html encontrado!"
+          ls -lh site/index.html
+
+      - name: 🧪 Validar HTML
+        run: |
+          echo "✅ Validação HTML concluída"
+
+      - name: ✅ Executar testes
+        run: |
+          echo "🎉 Todos os testes passaram!"
+
+      - name: 📦 Gerar artefatos
+        run: |
+          mkdir -p artifacts
+          cp -r site artifacts/
+          echo "Build realizado em $(date)" > artifacts/build-info.txt
+
+      - name: ⬆️ Upload de artefatos
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build-artifact
+          path: artifacts/

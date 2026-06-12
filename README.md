@@ -1,1 +1,3 @@
-# pipeline_CI_CD_mackenzie_10735382
+# Pipeline CI/CD - Mackenzie
+
+Projeto da atividade prática de CI/CD com GitHub Actions.

@@ -1,4 +1,4 @@
-name: CD - Deploy Contínuo (GitHub Pages)
+name: CD - Deploy Continuo (GitHub Pages)
 
 on:
   push:
@@ -18,22 +18,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout do código
+      - name: Checkout do codigo
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurar GitHub Pages
+      - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: 📦 Preparar artefato
+      - name: Preparar artefato
         run: |
           echo "Deploying from site/ folder"
           ls -la site/
 
-      - name: ⬆️ Upload artifact para GitHub Pages
+      - name: Upload artifact para GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'site'
 
-      - name: 🚀 Deploy no GitHub Pages
+      - name: Deploy no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

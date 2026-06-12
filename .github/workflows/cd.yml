@@ -2,7 +2,7 @@ name: CD - Deploy Contínuo (GitHub Pages)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -18,13 +18,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout
+      - name: 📥 Checkout do código
         uses: actions/checkout@v4
 
       - name: ⚙️ Configurar GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: 📦 Upload artifact
+      - name: 📦 Preparar artefato
+        run: |
+          echo "Deploying from site/ folder"
+          ls -la site/
+
+      - name: ⬆️ Upload artifact para GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'site'
